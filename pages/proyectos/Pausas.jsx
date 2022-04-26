@@ -1,6 +1,18 @@
-import { Alert, Button, Form, Table } from "react-bootstrap";
+import { useState } from "react";
+import { Alert, Button, Form, Modal, Table } from "react-bootstrap";
 
 const Pausas = () => {
+  
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id = 0) => {
+    setShow(true)
+
+    if(id > 0) {console.log(id)}
+  };
+
+
+  
   return (
     <>
       <h4>Pausas de Trabajo</h4>
@@ -15,6 +27,14 @@ const Pausas = () => {
         </thead>
         <tbody>
           <tr>
+            <td></td>
+            <td>
+              <div className="d-grid gap-2">
+                <Button variant="info" size="md" onClick={ handleShow }>➕</Button>
+              </div>
+            </td>
+          </tr>
+          <tr>
             <td>
               <b>Inicio:</b> 1 Enero 2022 20:30
               <br />
@@ -27,8 +47,8 @@ const Pausas = () => {
                 ✔️ Motivo por el que SI se resolvió el problema negativamente
               </Alert>
             </td>
-            <td>
-              <button className="btn btn-light mx-2" title="Editar">✏️</button>
+            <td className="text-center">
+              <button className="btn btn-light mx-2" title="Editar" onClick={ () => handleShow(1) }>✏️</button>
               <button className="btn btn-light" title="Eliminar">🗑️</button>
             </td>
           </tr>
@@ -45,13 +65,28 @@ const Pausas = () => {
                 ✖️ Motivo por el que NO se resolvió el problema negativamente
               </Alert>
             </td>
-            <td>
-              <button className="btn btn-light mx-2" title="Editar">✏️</button>
+            <td className="text-center">
+              <button className="btn btn-light mx-2" title="Editar" onClick={ () => handleShow(2) }>✏️</button>
               <button className="btn btn-light" title="Eliminar">🗑️</button>
             </td>
           </tr>
         </tbody>
       </Table>
+
+      <Modal show={show} onHide={handleClose} backdrop='static' keyboard="False">
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, youre reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

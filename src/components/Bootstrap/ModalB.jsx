@@ -4,30 +4,39 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose, faSave } from '@fortawesome/free-solid-svg-icons'
 
-export const ModalB = () => {
-  const [show, setShow] = useState(false);
-  const [fullscreen, setFullscreen] = useState(true);
+export const ModalB = (props) => {
+  console.log(props)
   
-  const handleClose = () => setShow(false);
+  const handleClose = () => props.setShow();
   const handleSave = () => console.log('Saving...');
-  const handleShow = () => setShow(true);
 
   return (
-    <Modal show={show} onHide={handleClose} fullscreen={fullscreen}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editando Proyecto 1</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            <FontAwesomeIcon icon={faClose} />
-          </Button>
-          <Button variant="primary" onClick={handleSave}>
-            <FontAwesomeIcon icon={faSave} />
-          </Button>
-        </Modal.Footer>
-      </Modal>
+    <Modal 
+      {...props}
+      show={props.show} 
+      fullscreen={props.fullscreen}
+      size={props.size}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>Centered Modal</h4>
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={ handleClose }>Close</Button>
+      </Modal.Footer>
+    </Modal>
   )
 }
+
+export const {show, setShow, fullscreen, setFullscreen, handleClose, handleSave, handleShow} = ModalB;
