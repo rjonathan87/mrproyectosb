@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, Button, Form, Modal, Table } from "react-bootstrap";
+import { Alert, Button, Col, Form, Modal, Row, Table } from "react-bootstrap";
 
 const Pausas = () => {
   
@@ -11,8 +11,6 @@ const Pausas = () => {
     if(id > 0) {console.log(id)}
   };
 
-
-  
   return (
     <>
       <h4>Pausas de Trabajo</h4>
@@ -75,15 +73,76 @@ const Pausas = () => {
 
       <Modal show={show} onHide={handleClose} backdrop='static' keyboard="False">
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Gestionando Pausa</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, youre reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Row>
+              <Col sm={6}>
+                <Form.Group controlId="inicio" className="mb-3">
+                  <Form.Label>Inicio</Form.Label>
+                  <Form.Control type="date" placeholder="Inicio" />
+                </Form.Group>
+              </Col>
+              <Col sm={6}>
+                <Form.Group controlId="inicio_hora" className="mb-3">
+                  <Form.Label>Hora Inicio</Form.Label>
+                  <Form.Control type="time" placeholder="Hora Inicio" />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={6}>
+                <Form.Group controlId="final" className="mb-3">
+                  <Form.Label>Fin</Form.Label>
+                  <Form.Control type="date" placeholder="Fin" />
+                </Form.Group>
+              </Col>
+              <Col sm={6}>
+                <Form.Group controlId="fin_hora" className="mb-3">
+                  <Form.Label>Hora Fin</Form.Label>
+                  <Form.Control type="time" placeholder="Hora Fin" />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Form.Group controlId="motivo" className="mb-3">
+              <Form.Label>Motivo</Form.Label>
+              <Form.Select aria-label="Default select example">
+                <option>Seleccione</option>
+                <option value="1">Motivo 1</option>
+                <option value="2">Motivo 2</option>
+                <option value="3">Motivo 3</option>
+                <option value="4">Motivo 4</option>
+                <option value="5">Motivo 5</option>
+                <option value="6">Motivo 6</option>
+                <option value="7">Motivo 7</option>
+                <option value="8">Motivo 8</option>
+                <option value="9">Motivo 9</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Form.Group controlId='resolucion_check' className="mb-3">
+              <Form.Check 
+                type={'checkbox'}
+                id={'resolucion_check'}
+                label={'Se resolvió?'}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="resolucion_text" className="mb-3">
+              <Form.Label>Resolución</Form.Label>
+              <Form.Control as="textarea" rows="3" />
+            </Form.Group>
+
+          </Form>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cerrar
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Guardar
           </Button>
         </Modal.Footer>
       </Modal>
